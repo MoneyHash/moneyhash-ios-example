@@ -18,8 +18,8 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             MHPaymentHandler.start(
                 on: self,
-                withPaymentId: "z984l9y",
-                withEnvironment: .staging
+                withPaymentId: "3oZGP9Y",
+                andEnvironment: .staging
             ) { status in
                 
                 
