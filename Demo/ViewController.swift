@@ -7,7 +7,6 @@
 
 import UIKit
 import MoneyHash
-import MoneyHashShared
 
 class ViewController: UIViewController {
 
@@ -18,12 +17,9 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             MHPaymentHandler.start(
                 on: self,
-                withPaymentId: "3oZGP9Y",
+                withPaymentId: "Your payment id will be here",
                 andEnvironment: .staging
             ) { status in
-                
-                
-                
                 switch status {
                 case .error(errors: let errors):
                     print("errors")
@@ -35,13 +31,10 @@ class ViewController: UIViewController {
                     print("success")
                 case .cancelled:
                     print("cancelled")
-
                 case .unknown:
                     print("unknown")
-
                 @unknown default:
                     print("unknown")
-
                 }
             }
         }

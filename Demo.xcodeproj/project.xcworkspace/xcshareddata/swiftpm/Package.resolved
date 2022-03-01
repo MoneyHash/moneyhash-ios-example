@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MoneyHashiOS",
+        "repositoryURL": "https://github.com/MoneyHash/moneyhash-ios",
+        "state": {
+          "branch": null,
+          "revision": "d21a8d3d05ce4bdc87e3d6310e98e6ab417984be",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "MoneyHashShared",
+        "repositoryURL": "https://github.com/MoneyHash/moneyhash-spm",
+        "state": {
+          "branch": null,
+          "revision": "6564d7a34a50943646a9d19d1fa41c154868db1a",
+          "version": "0.0.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
