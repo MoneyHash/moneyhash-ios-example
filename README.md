@@ -32,7 +32,7 @@ Then, select **Add Package**.
 
 ### Usage
 
-To start the payment flow you need to get the payment id from your backend and send it as paramter with the enviorment (staging or production) and then start the flow
+To start the payment flow you need to get the payment id from your backend and send it as parameter with the environment (staging or production) and then start the flow
 
 1- import MoneyHash to your view controller
 ```swift
