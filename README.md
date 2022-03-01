@@ -42,28 +42,26 @@ import MoneyHash
 2- 
 
 ```swift
-        DispatchQueue.main.async {
-            MHPaymentHandler.start(
-                on: self,
-                withPaymentId: "Your payment id will be here",
-                andEnvironment: .staging
-            ) { status in
-                switch status {
-                case .error(errors: let errors):
-                    print("errors")
-                case .failed:
-                    print("faild")
-                case .requireExtraAction(actions: let actions):
-                    print("actions")
-                case .success:
-                    print("success")
-                case .cancelled:
-                    print("cancelled")
-                case .unknown:
-                    print("unknown")
-                @unknown default:
-                    print("unknown")
-                }
+        MHPaymentHandler.start(
+            on: self,
+            withPaymentId: "Your payment id will be here",
+            andEnvironment: .staging
+        ) { status in
+            switch status {
+            case .error(errors: let errors):
+                print("errors")
+            case .failed:
+                print("faild")
+            case .requireExtraAction(actions: let actions):
+                print("actions")
+            case .success:
+                print("success")
+            case .cancelled:
+                print("cancelled")
+            case .unknown:
+                print("unknown")
+            @unknown default:
+                print("unknown")
             }
         }
 ```
