@@ -17,8 +17,7 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             MHPaymentHandler.start(
                 on: self,
-                withPaymentId: "Your payment id will be here",
-                andEnvironment: .staging
+                withPaymentId: "Your payment id will be here"
             ) { status in
                 switch status {
                 case .error(errors: let errors):
@@ -38,11 +37,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
-       
-        
     }
-
-
 }
 
