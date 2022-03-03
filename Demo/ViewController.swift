@@ -17,23 +17,26 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             MHPaymentHandler.start(
                 on: self,
-                withPaymentId: "Your payment id will be here"
-            ) { status in
-                switch status {
-                case .error(errors: let errors):
-                    print("errors")
-                case .failed:
-                    print("faild")
-                case .requireExtraAction(actions: let actions):
-                    print("actions")
-                case .success:
-                    print("success")
+                withPaymentId: "PgwXvOZ"
+            ) { result in
+                switch result {
+                case .success(let result):
+                    fallthrough
+
+                case .requireExtraAction(_, let result):
+                    fallthrough
+
+                case .failed(let result):
+                    fallthrough
+
+                case .error:
+                    fallthrough
+                    
                 case .cancelled:
-                    print("cancelled")
-                case .unknown:
-                    print("unknown")
-                @unknown default:
-                    print("unknown")
+                    fallthrough
+                    
+                default:
+                    print(String(describing: result))
                 }
             }
         }

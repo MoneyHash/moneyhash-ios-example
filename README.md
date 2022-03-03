@@ -30,7 +30,7 @@ Search for the MoneyHash SDK using the repo's URL:
 https://github.com/MoneyHash/moneyhash-ios
 ```
 
-Next, set the **Dependency Rule** to be `Up to Next Major Version` and specify `0.0.4` as the lower bound.
+Next, set the **Dependency Rule** to be `Up to Next Major Version` and specify `0.0.5` as the lower bound.
 
 Then, select **Add Package**.
 
