@@ -38,12 +38,12 @@ Then, select **Add Package**.
 
 ---
 
-### Create a Payment Intent
-You will need to create a Payment Intent and use it's ID to initiate the SDK, There are two ways to create a Payment Intent:
+### Create a Payment/Payout Intent
+You will need to create a Payment Intent and use it's ID to initiate the SDK, There are two ways to create a Payment/Payout Intent:
 
 - **Using The Sandbox**
 
-  Which is helpful to manually and quickly create a Payment Intent without having to running any backend code. For more information about the Sandbox refer to this [section](https://moneyhash.github.io/sandbox)
+  Which is helpful to manually and quickly create a Payment/Payout Intent without having to running any backend code. For more information about the Sandbox refer to this [section](https://moneyhash.github.io/sandbox)
 - **Using The Payment Intent API**
 
   This will be the way your backend server will eventually use to create a Payment Intents, for more information refer to this [section](https://moneyhash.github.io/api)
@@ -60,7 +60,7 @@ import MoneyHash
 2- 
 
 ```swift
-        MHPaymentHandler.start(
+        MHPaymentHandler.startPaymentFlow(
             on: self,
             withPaymentId: paymentIntentId // Your payment intent id
         ) { status in
@@ -73,6 +73,8 @@ import MoneyHash
                 print("actions")
             case .success:
                 print("success")
+            case .redirect(result: let result, redirectUrl: let redirectUrl):
+                print("success")
             case .cancelled:
                 print("cancelled")
             case .unknown:
@@ -83,7 +85,42 @@ import MoneyHash
         }
 ```
 
-### Payment Statuses
+To start the payout flow use the Payout Intent ID from the step above as a parameter
+
+1- import MoneyHash to your view controller
+```swift
+import MoneyHash
+```
+
+2- 
+
+```swift
+        MHPaymentHandler.startPayoutFlow(
+            on: self,
+            withPayoutId: payoutIntentId // Your payout intent id
+        ) { status in
+            switch status {
+            case .error(errors: let errors):
+                print("errors")
+            case .failed:
+                print("faild")
+            case .requireExtraAction(actions: let actions):
+                print("actions")
+            case .success:
+                print("success")
+            case .redirect(result: let result, redirectUrl: let redirectUrl):
+                print("success")
+            case .cancelled:
+                print("cancelled")
+            case .unknown:
+                print("unknown")
+            @unknown default:
+                print("unknown")
+            }
+        }
+```
+
+### Payment/Payout Statuses
 Once your customer finishes adding the payment information they will reach one of the following statuses, and  a callback is fired with the payment status which indicate the current status of your payment.
 
 Status | #
@@ -93,6 +130,7 @@ Success | The payment is Successful.
 RequireExtraAction | That payment flow is done and the customer needs to do some extra actions off the system, a list of the actions required by the customer will be found inside the actions data, and it should be rendered to the customer in your app.
 Failed | There was an error while processing the payment.
 Unknown | There was an unknown state received and this should be checked from your MoneyHash dashboard.
+Redirect | That payment flow is done and the customer needs to be redirect to `redirectUrl`.
 Cancelled | The customer cancelled the payment flow by clicking back or cancel.
 
 ## Questions and Issues

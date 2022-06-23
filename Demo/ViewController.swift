@@ -15,17 +15,21 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         DispatchQueue.main.async {
-            MHPaymentHandler.start(
+            MHPaymentHandler.startPaymentFlow(
                 on: self,
-                withPaymentId: "PgwXvOZ"
+                withPaymentId: "rgyBeaZ"
             ) { result in
                 switch result {
+                case .redirect(let result, let redirectUrl):
+                    print(String(describing: redirectUrl))
+
                 case .success(let result):
                     fallthrough
 
                 case .requireExtraAction(_, let result):
                     fallthrough
 
+                    
                 case .failed(let result):
                     fallthrough
 

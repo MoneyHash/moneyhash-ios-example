@@ -1,25 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "MoneyHashiOS",
-        "repositoryURL": "https://github.com/MoneyHash/moneyhash-ios",
-        "state": {
-          "branch": null,
-          "revision": "7d8e546b367a734eae9fe4e2dbeabe23ffa9e650",
-          "version": "0.0.5"
-        }
-      },
-      {
-        "package": "MoneyHashShared",
-        "repositoryURL": "https://github.com/MoneyHash/moneyhash-spm",
-        "state": {
-          "branch": null,
-          "revision": "e9f5f124e43482012ea3f02ee80b2886e2e1a09a",
-          "version": "0.0.5"
-        }
+  "pins" : [
+    {
+      "identity" : "moneyhash-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MoneyHash/moneyhash-ios",
+      "state" : {
+        "revision" : "6823547f1796efcb633cc102ce16c287d0805503",
+        "version" : "0.1.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "moneyhash-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MoneyHash/moneyhash-spm",
+      "state" : {
+        "revision" : "83fac3f9034c1b26bfa941b86c2beefcd65cad62",
+        "version" : "0.1.0"
+      }
+    }
+  ],
+  "version" : 2
 }
