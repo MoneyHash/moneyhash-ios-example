@@ -71,6 +71,8 @@ import MoneyHash
                 print("faild")
             case .requireExtraAction(actions: let actions):
                 print("actions")
+            case .redirect(let result, let redirectUrl):
+                print("redirect")
             case .success:
                 print("success")
             case .redirect(result: let result, redirectUrl: let redirectUrl):
