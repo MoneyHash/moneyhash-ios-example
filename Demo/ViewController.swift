@@ -21,7 +21,7 @@ class ViewController: UIViewController {
             ) { result in
                 switch result {
                 case .redirect(let result, let redirectUrl):
-                    print(String(describing: redirectUrl))
+                    fallthrough
 
                 case .success(let result):
                     fallthrough

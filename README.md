@@ -2,14 +2,14 @@
 
 ## About MoneyHash
 
-MoneyHAsh is a Super-API infrastructure for payment orchestration and revenue operations in emerging markets. We provide a single integration to your network of pay-in and pay-out providers, and various other services that you can utilize and combine to build a unique custom payment stack. Our core features include:
+MoneyHash is a Super-API infrastructure for payment orchestration and revenue operations in emerging markets. We provide a single integration to your network of pay-in and pay-out providers, and various other services that you can utilize and combine to build a unique custom payment stack. Our core features include:
 
 1. A single API/SDK integration for Pay-in & Pay-out
 2. Unified checkout embed compatible with all integrated providers
-3. Orchestration and routing capabilities to allow for optimal transaction route and to increase authorization rates
+3. Orchestration and routing capabilities to allow for optimal transaction routes and to increase authorization rates
 4. Micro-services to extend your stack capabilities such as subscription management, invoicing, and payment links
 5. PCI-compliant card vault to store and tokenize sensitive customer and card information
-6. Central dashboard for a unified stack controls and transaction reporting
+6. Central dashboard for unified stack controls and transaction reporting
 
 You can learn more about us by visiting [our website](https://www.moneyhash.io/).
 
@@ -30,7 +30,7 @@ Search for the MoneyHash SDK using the repo's URL:
 https://github.com/MoneyHash/moneyhash-ios
 ```
 
-Next, set the **Dependency Rule** to be `Up to Next Major Version` and specify `0.1.0` as the lower bound.
+Next, set the **Dependency Rule** to be `Up to Next Major Version` and specify `0.1.1` as the lower bound.
 
 Then, select **Add Package**.
 
@@ -68,7 +68,7 @@ import MoneyHash
             case .error(errors: let errors):
                 print("errors")
             case .failed:
-                print("faild")
+                print("failed")
             case .requireExtraAction(actions: let actions):
                 print("actions")
             case .redirect(let result, let redirectUrl):
@@ -132,7 +132,7 @@ Success | The payment is Successful.
 RequireExtraAction | That payment flow is done and the customer needs to do some extra actions off the system, a list of the actions required by the customer will be found inside the actions data, and it should be rendered to the customer in your app.
 Failed | There was an error while processing the payment.
 Unknown | There was an unknown state received and this should be checked from your MoneyHash dashboard.
-Redirect | That payment flow is done and the customer needs to be redirect to `redirectUrl`.
+Redirect | That payment flow is done and the customer needs to be redirected to `redirectUrl`.
 Cancelled | The customer cancelled the payment flow by clicking back or cancel.
 
 ## Questions and Issues
