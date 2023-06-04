@@ -2,7 +2,7 @@
 
 ### Requirements
 
-- Requires Xcode 12.5 or above
+- Requires Xcode 14.3 or above
 
 ## Installation
 
