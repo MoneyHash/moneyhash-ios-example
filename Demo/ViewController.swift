@@ -10,36 +10,22 @@ import MoneyHash
 
 class ViewController: UIViewController {
 
+    let moneyHashSDK = MoneyHashSDKBuilder.build()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         DispatchQueue.main.async {
-            MHPaymentHandler.startPaymentFlow(
+            self.moneyHashSDK.renderForm(
                 on: self,
-                withPaymentId: "rgyBeaZ"
+                intentId: "Z1ED7zZ",
+                intentType: IntentType.payment
             ) { result in
-                switch result {
-                case .redirect(let result, let redirectUrl):
-                    fallthrough
-
-                case .success(let result):
-                    fallthrough
-
-                case .requireExtraAction(_, let result):
-                    fallthrough
-
-                    
-                case .failed(let result):
-                    fallthrough
-
-                case .error:
-                    fallthrough
-                    
-                case .cancelled:
-                    fallthrough
-                    
-                default:
+                do {
+                    // Handle result here
+                } catch MHError.cancelled {
+                    print("Cancelled")
+                } catch {
                     print(String(describing: result))
                 }
             }
