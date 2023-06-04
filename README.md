@@ -140,6 +140,153 @@ let moneyHashSDK = MoneyHashSDKBuilder.build()
             }
 ```
 
+### Models
+```swift
+
+public enum MHError: Error {
+    case cancelled
+    case unknownError(underlyingError: String)
+}
+
+public struct MethodsResult: Encodable {
+    let intentData: IntentDetails?
+    let methods: IntentMethods?
+}
+
+public struct IntentMethods: Encodable {
+    public let customerBalances: [CustomerBalance]?
+    public let paymentMethods: [PaymentMethod]?
+    public let expressMethods: [ExpressMethod]?
+    public let savedCards: [SavedCard]?
+    public let payoutMethods: [PayoutMethod]?
+}
+
+public struct IntentDetails: Encodable {
+    public let selectedMethod: String?
+    public let wallet: Double?
+    public let intent: Intent?
+    public let state: State?
+    public let transaction: Transaction?
+    public let redirect: RedirectData?
+}
+
+public struct Intent: Encodable {
+    public let id: String?
+    public let amount: AmountData?
+    public let secret: String?
+    public let isLive: Bool?
+    public let status: IntentStatus?
+    public let expirationDate: String?
+}
+
+public struct AmountData: Encodable {
+    let value: String?
+    let formatted: Double?
+    let currency: String?
+    let maxPayoutAmount: Double?
+}
+
+public enum IntentStatus: String, Encodable {
+    case processed
+    case unprocessed
+    case timeExpired
+    case closed
+}
+
+public enum IntentType: String, Encodable {
+    case payment
+    case payout
+}
+
+public struct RedirectData: Encodable {
+    public let redirectUrl: String?
+}
+
+public enum State: String, Encodable {
+    case methodSelection
+    case intentForm
+    case intentProcessed
+    case transactionWaitingUserAction
+    case transactionFailed
+    case expired
+    case closed
+}
+
+public struct Transaction: Encodable {
+    public let id: String?
+    public let createdDate: String?
+    public let status: String?
+    public let amount: Double?
+    public let amountCurrency: String?
+    public let method: String?
+    public let methodName: String?
+    public let billingData: String?
+    public let customFields: String?
+    public let customFormAnswers: String?
+    public let externalActionMessage: [String]?
+    public let providerTransactionFields: String?
+}
+
+public struct SavedCard: Encodable {
+    public let id: String?
+    public let brand: String?
+    public let last4: String?
+    public let expiryMonth: String?
+    public let expiryYear: String?
+    public let country: String?
+    public let logo: String?
+    public let requireCvv: Bool?
+    public let cvvConfig: CvvConfig?
+    public let type: IntentMethodType?
+}
+
+public struct PayoutMethod: Encodable {
+    public let id: String?
+    public let title: String?
+    public let isSelected: Bool?
+    public let checkoutIcons: [String]?
+    public let type: IntentMethodType?
+}
+
+public struct PaymentMethod: Encodable {
+    public let id: String?
+    public let title: String?
+    public let isSelected: Bool?
+    public let checkoutIcons: [String]?
+    public let type: IntentMethodType?
+}
+
+public enum IntentMethodType: String, Encodable {
+    case paymentMethod
+    case expressMethod
+    case payoutMethod
+    case savedCard
+    case customerBalance
+}
+
+public struct IntentMethodMetaData {
+    public let cvv: String?
+}
+
+public struct ExpressMethod: Encodable {
+    public let id: String?
+    public let title: String?
+    public let isSelected: Bool?
+    public let checkoutIcons: [String]?
+    public let type: IntentMethodType?
+}
+
+public struct CustomerBalance: Encodable {
+    public let id: String?
+    public let balance: Double?
+    public let isSelected: Bool?
+    public let icon: String?
+    public let type: IntentMethodType?
+}
+
+```
+
+
 ## Questions and Issues
 
 Please provide any feedback via a [GitHub Issue](https://github.com/MoneyHash/moneyhash-ios/issues/new?template=bug_report.md).
