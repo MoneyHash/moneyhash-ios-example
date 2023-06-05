@@ -22,11 +22,8 @@ class ViewController: UIViewController {
                 intentType: IntentType.payment
             ) { result in
                 do {
-                    // Handle result here
-                } catch MHError.cancelled {
-                    print("Cancelled")
-                } catch {
                     print(String(describing: result))
+                    // Handle result here
                 }
             }
         }

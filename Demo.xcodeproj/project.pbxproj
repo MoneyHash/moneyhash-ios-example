@@ -393,7 +393,7 @@
 			repositoryURL = "https://github.com/MoneyHash/moneyhash-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
+				minimumVersion = 1.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

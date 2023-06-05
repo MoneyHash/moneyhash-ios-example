@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MoneyHash/moneyhash-ios",
       "state" : {
-        "revision" : "cb35c08c2c2df1459e2ea35f002fb234367baf98",
-        "version" : "1.0.2"
+        "revision" : "03815bb78388f74be0b128c07bec6046a6f52a65",
+        "version" : "1.0.4"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MoneyHash/moneyhash-spm",
       "state" : {
-        "revision" : "9a0b3c9d7782cca5c8c62471e6e94a55a34442d8",
-        "version" : "1.0.2"
+        "revision" : "dd3955c004ce6728bac58529b6a6770b3507310e",
+        "version" : "1.0.3"
       }
     }
   ],
