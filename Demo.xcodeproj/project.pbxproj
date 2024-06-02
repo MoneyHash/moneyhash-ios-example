@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD423F5B27CB70F100F4D64A /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = DD423F5A27CB70F100F4D64A /* MoneyHashiOS */; };
+		C123490A2C0CA4D200B610ED /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C12349092C0CA4D200B610ED /* MoneyHashiOS */; };
+		C12349112C0CA97F00B610ED /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C12349102C0CA97F00B610ED /* MoneyHashiOS */; };
+		C12349142C0CAF8E00B610ED /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C12349132C0CAF8E00B610ED /* MoneyHashiOS */; };
 		DDE640C527B50B3B00604FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE640C427B50B3B00604FD4 /* AppDelegate.swift */; };
 		DDE640C727B50B3B00604FD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE640C627B50B3B00604FD4 /* SceneDelegate.swift */; };
 		DDE640C927B50B3B00604FD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE640C827B50B3B00604FD4 /* ViewController.swift */; };
@@ -46,7 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD423F5B27CB70F100F4D64A /* MoneyHashiOS in Frameworks */,
+				C123490A2C0CA4D200B610ED /* MoneyHashiOS in Frameworks */,
+				C12349142C0CAF8E00B610ED /* MoneyHashiOS in Frameworks */,
+				C12349112C0CA97F00B610ED /* MoneyHashiOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +106,9 @@
 			);
 			name = Demo;
 			packageProductDependencies = (
-				DD423F5A27CB70F100F4D64A /* MoneyHashiOS */,
+				C12349092C0CA4D200B610ED /* MoneyHashiOS */,
+				C12349102C0CA97F00B610ED /* MoneyHashiOS */,
+				C12349132C0CAF8E00B610ED /* MoneyHashiOS */,
 			);
 			productName = Demo;
 			productReference = DDE640C127B50B3B00604FD4 /* Demo.app */;
@@ -133,7 +139,7 @@
 			);
 			mainGroup = DDE640B827B50B3B00604FD4;
 			packageReferences = (
-				DD423F5927CB70F100F4D64A /* XCRemoteSwiftPackageReference "moneyhash-ios" */,
+				C12349122C0CAF8E00B610ED /* XCRemoteSwiftPackageReference "moneyhash-ios" */,
 			);
 			productRefGroup = DDE640C227B50B3B00604FD4 /* Products */;
 			projectDirPath = "";
@@ -388,20 +394,28 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DD423F5927CB70F100F4D64A /* XCRemoteSwiftPackageReference "moneyhash-ios" */ = {
+		C12349122C0CAF8E00B610ED /* XCRemoteSwiftPackageReference "moneyhash-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MoneyHash/moneyhash-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
+				minimumVersion = 1.0.6;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DD423F5A27CB70F100F4D64A /* MoneyHashiOS */ = {
+		C12349092C0CA4D200B610ED /* MoneyHashiOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DD423F5927CB70F100F4D64A /* XCRemoteSwiftPackageReference "moneyhash-ios" */;
+			productName = MoneyHashiOS;
+		};
+		C12349102C0CA97F00B610ED /* MoneyHashiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MoneyHashiOS;
+		};
+		C12349132C0CAF8E00B610ED /* MoneyHashiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C12349122C0CAF8E00B610ED /* XCRemoteSwiftPackageReference "moneyhash-ios" */;
 			productName = MoneyHashiOS;
 		};
 /* End XCSwiftPackageProductDependency section */

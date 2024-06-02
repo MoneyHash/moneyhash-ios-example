@@ -17,7 +17,7 @@ Search for the MoneyHash SDK using the repo's URL:
 https://github.com/MoneyHash/moneyhash-ios
 ```
 
-Next, set the **Dependency Rule** to be `Up to Next Major Version` and specify `1.0.4` as the lower bound.
+Next, set the **Dependency Rule** to be `Up to Next Major Version` and specify `1.0.6` as the lower bound.
 
 Then, select **Add Package**.
 
@@ -128,6 +128,7 @@ let moneyHashSDK = MoneyHashSDKBuilder.build()
             self.moneyHashSDK.renderForm(
                 on: self,
                 intentId: "intentId",
+                embedStyle: embedStyle, // optional EmbedStyle object to customize the embed form UI (colors, fonts, etc) for the buttons, inputs, loader
                 intentType: IntentType.payment
             ) { result in
                 do {
