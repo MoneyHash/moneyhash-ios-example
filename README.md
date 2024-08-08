@@ -4,6 +4,14 @@
 
 - Requires Xcode 14.3 or above
 
+
+
+## Migration Guide
+
+If you're upgrading to version 2 of the MoneyHash SDK, please refer to the [Migration Guide to V2](./MIGRATION_TO_V2.md) for detailed instructions.
+
+
+
 ## Installation
 
 Add a package by selecting `File` → `Add Packages…` in Xcode’s menu bar.
