@@ -324,6 +324,12 @@ default:
 }
 ```
 
+### Summary of Changes
+
+- **Removed:** `RedirectData` model from `IntentDetails`.
+- **Added:** `redirectToURL` state in `IntentStateDetails` enum to represent redirects.
+- **Action:** Update code to switch on the `state` property of `IntentDetails` and handle the new `redirectToURL` case.
+
 ---
 
 ## 4. Add Support for New Methods
@@ -425,13 +431,7 @@ DispatchQueue.main.async {
 }
 ```
 
-### Summary of Changes
 
-- **Removed:** `RedirectData` model from `IntentDetails`.
-- **Added:** `redirectToURL` state in `IntentStateDetails` enum to represent redirects.
-- **Action:** Update code to switch on the `state` property of `IntentDetails` and handle the new `redirectToURL` case.
-
----
 
 This section has been added to help developers adapt to the changes in the `IntentDetails` model and the removal of the `RedirectData` model by explaining how to handle redirects with the new `IntentStateDetails` enum. 
 
