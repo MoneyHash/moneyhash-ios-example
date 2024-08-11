@@ -269,7 +269,64 @@ default:
 
 ---
 
-## 3. Add Support for New Methods
+## 3. Migrate `IntentDetails` Model Changes
+
+### Model Changes Overview
+
+The `IntentDetails` struct has undergone changes where the `RedirectData` model has been removed, and redirect information is now handled within the `IntentStateDetails` enum. The new `IntentStateDetails` enum now includes a `redirectToURL` case to represent redirect states.
+
+### Step-by-Step Migration
+
+1. **Remove `RedirectData` Reference:**
+
+   - If your code references the `RedirectData` model within the `IntentDetails` struct, you should remove these references. Redirect information is no longer stored in a separate model but as part of the `state` in the `IntentStateDetails` enum.
+
+2. **Handle `redirectToURL` State:**
+
+   - Update your code to handle the new `redirectToURL` state in the `IntentStateDetails` enum. This state includes the `url` and `renderStrategy` that were previously part of the `RedirectData` model.
+   
+   **Old Code:**
+   ```swift
+   if let redirectData = intentDetails.redirect {
+       // Handle redirect logic
+   }
+   ```
+
+   **New Code:**
+   ```swift
+   switch intentDetails.state {
+   case .redirectToURL(let url, let renderStrategy):
+       // Handle redirect logic
+   default:
+       break
+   }
+   ```
+
+### Example Migration
+
+Let's assume you had the following code before the migration:
+
+**Old Code:**
+```swift
+if let redirectData = intentDetails.redirect {
+    // Handle the redirect data
+}
+```
+
+
+**New Code:**
+```swift
+switch intentDetails.state {
+case .redirectToURL(let url, let renderStrategy):
+    // Handle the redirect state
+default:
+    break
+}
+```
+
+---
+
+## 4. Add Support for New Methods
 
 ### Submit Form Data
 
@@ -332,7 +389,7 @@ do {
 
 ---
 
-## 4. Update Error Handling
+## 5. Update Error Handling
 
 In the new SDK, errors are now handled using Swift's `throw` mechanism. You'll need to update your error handling code to use `do-catch` blocks.
 
@@ -367,6 +424,18 @@ DispatchQueue.main.async {
     // Update UI on the main thread
 }
 ```
+
+### Summary of Changes
+
+- **Removed:** `RedirectData` model from `IntentDetails`.
+- **Added:** `redirectToURL` state in `IntentStateDetails` enum to represent redirects.
+- **Action:** Update code to switch on the `state` property of `IntentDetails` and handle the new `redirectToURL` case.
+
+---
+
+This section has been added to help developers adapt to the changes in the `IntentDetails` model and the removal of the `RedirectData` model by explaining how to handle redirects with the new `IntentStateDetails` enum. 
+
+Would you like any further refinements or additional examples?
 
 ---
 

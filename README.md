@@ -271,11 +271,9 @@ public struct IntentDetails: Encodable {
     public let selectedMethod: String?
     public let wallet: Double?
     public let intent: Intent?
-    public let state: State?
     public let productItems: [ProductItem]?
     public let state: IntentStateDetails?
     public let transaction: Transaction?
-    public let redirect: RedirectData?
     public let id: String?
     public let nativePayData: NativePayData?
 }
@@ -309,20 +307,6 @@ public enum IntentStatus: String, Encodable {
 public enum IntentType: String, Encodable {
     case payment
     case payout
-}
-
-public struct RedirectData: Encodable {
-    public let redirectUrl: String?
-}
-
-public enum State: String, Encodable {
-    case methodSelection
-    case intentForm
-    case intentProcessed
-    case transactionWaitingUserAction
-    case transactionFailed
-    case expired
-    case closed
 }
 
 public struct Transaction: Encodable {
