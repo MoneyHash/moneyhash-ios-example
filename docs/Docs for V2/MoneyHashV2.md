@@ -38,7 +38,7 @@ Handling method selection in MoneyHash involves a few key steps:
 3. **Handling Express Methods:**
    - If there are express methods, they are either Google Pay or Apple Pay.
    - **Google Pay**: After sending the selected method, you can render the MoneyHash embed to handle the flow using the [Render MoneyHash Embed Form](./APIsDocs.md#1-render-moneyhash-embed-form) API. Note that you can disable Google Pay from your dashboard.
-   - **Apple Pay**: You will receive intent details with `intentForm` as the state but with `nativePayData` in the intent details containing `ApplePayData`. You can then use the [Check Device Compatibility for Apple Pay](./APIsDocs.md#11-isdevicecompatible-method) API to check if the device can use Apple Pay. If the device is compatible, you can use the [Show Apple Pay Payment Sheet](./APIsDocs.md#12-showpaymentsheet-method) API to present the Apple Pay payment sheet.
+   - **Apple Pay**: You will receive intent details with `intentForm` as the state but with [`nativePayData`](./ModelsDocs.md#28-nativepaydata) in the intent details containing [`ApplePayData`](./ModelsDocs.md#18-applepaydata). you can use the [proceed with apple pay](./APIsDocs.md#11-proceed-with-apple-pay) API to present the Apple Pay payment sheet.
 
 This process ensures that you handle all types of payment methods and provide a seamless user experience.
 
@@ -185,8 +185,7 @@ The MoneyHash SDK provides a robust set of APIs to manage payment intents, metho
 - **[Submit Card CVV](APIsDocs.md#8-submit-card-cvv)**: Submit the CVV for a card associated with a specified intent.
 - **[Set Logging Level](APIsDocs.md#9-set-logging-level)**: Configure the logging level for the SDK.
 - **[Submit Payment Receipt](APIsDocs.md#10-submit-payment-receipt)**: Submit a payment receipt for a specified intent.
-- **[Check Device Compatibility for Apple Pay](APIsDocs.md#11-isdevicecompatible-method)**: Determine if the device is compatible with Apple Pay.
-- **[Show Apple Pay Payment Sheet](APIsDocs.md#12-showpaymentsheet-method)**: Display the Apple Pay payment sheet for the user.
+- **[Show Apple Pay Payment Sheet](APIsDocs.md#11-proceed-with-apple-pay)**: Display the Apple Pay payment sheet for the user.
 
 For a comprehensive guide to all available APIs, including their parameters, return types, and usage examples, please see the [APIsDocs.md](APIsDocs.md) file.
 
@@ -229,6 +228,9 @@ The MoneyHash SDK models represent the various entities involved in payment proc
 - **[IntentStateDetails](./ModelsDocs.md#30-intentstatedetails)**: Enum representing different states an intent can be in.
 - **[CardTokenData](./ModelsDocs.md#31-cardtokendata)**: Represents token data for a card used in payment processing.
 - **[CardFieldType](./ModelsDocs.md#32-cardfieldtype)**: representing the different types of card fields.
+- **[CardInputFieldState](./ModelsDocs.md#33-cardinputfieldstate)**: Represents the card field state.
+- **[ApplePayStatus](./ModelsDocs.md#34-applepaystatus)**: An enum representing possible statuses for Apple Pay transactions.
+
 
 For detailed descriptions of all models, including their properties and how they are used in the SDK, please refer to the [ModelsDocs.md](./ModelsDocs.md) file.
 

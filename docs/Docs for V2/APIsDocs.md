@@ -49,6 +49,8 @@ self.moneyHashSDK.renderForm(
 }
 ```
 
+---
+
 #### 2. Retrieve Available Methods
 
 ```swift
@@ -81,6 +83,8 @@ do {
     print("Error retrieving methods: \(error)")
 }
 ```
+
+---
 
 #### 3. Retrieve Intent Details
 
@@ -115,6 +119,8 @@ do {
 }
 ```
 
+---
+
 #### 4. Delete a Saved Card
 
 ```swift
@@ -143,6 +149,8 @@ do {
     print("Error deleting card: \(error)")
 }
 ```
+
+---
 
 #### 5. Reset Selected Method
 
@@ -175,6 +183,8 @@ do {
     print("Error resetting methods: \(error)")
 }
 ```
+
+---
 
 #### 6. Proceed with Selected Method
 
@@ -223,6 +233,8 @@ do {
 }
 ```
 
+---
+
 #### 7. Submit Form
 
 ```swift
@@ -262,6 +274,8 @@ do {
 }
 ```
 
+---
+
 #### 8. Submit Card CVV
 
 ```swift
@@ -294,6 +308,8 @@ do {
 }
 ```
 
+---
+
 #### 9. Set Logging Level
 
 ```swift
@@ -316,6 +332,8 @@ func setLogLevel(logLevel: LogLevel)
 self.moneyHashSDK.setLogLevel(logLevel: .debug)
 print("Log level set to debug")
 ```
+
+---
 
 #### 10. Submit Payment Receipt
 
@@ -347,29 +365,13 @@ do {
 }
 ```
 
+
 ---
 
-### Additional Apple Pay APIs
-
-#### 11. `isDeviceCompatible` Method
+#### 11. Proceed with Apple Pay
 
 ```swift
-func isDeviceCompatible() -> Bool
-```
-
-- **Purpose**: Checks if the device is compatible with Apple Pay.
-- **Returns**: `true` if the device can make payments using Apple Pay, `false` otherwise.
-- **Example**:
-
-```swift
-let isCompatible = applePayService.isDeviceCompatible()
-print("Is device compatible with Apple Pay: \(isCompatible)")
-```
-
-#### 12. `showPaymentSheet` Method
-
-```swift
-func showPaymentSheet(
+func proceedWithApplePay(
     depositAmount: Float,
     merchantIdentifier: String,
     currencyCode: String,
@@ -378,38 +380,29 @@ func showPaymentSheet(
 )
 ```
 
-- **Purpose**: Configures and presents the Apple Pay payment sheet if the device is compatible.
+- **Purpose**: Facilitates the presentation of an Apple Pay payment sheet, checking device compatibility, configuring the payment request, and presenting the authorization view controller.
 - **Parameters**:
-  - `depositAmount`: The amount to be paid.
-  - `merchantIdentifier`: The merchant identifier.
-  - `currencyCode`: The currency code for the payment.
-  - `countryCode`: The country code for the payment.
-  - `completionHandler`: A closure to be called with the result of the payment.
-    - **Enum Cases**:
-      - `.success(String)`: The payment was successful, and the closure returns a `String` containing the transaction ID.
-      - `.failure(ApplePayStatus)`: The payment failed, and the closure returns an `ApplePayStatus`.
-        - **Enum Cases**:
-          - `.notCompatible`: The device is not compatible with Apple Pay.
-          - `.failed`: The Apple Pay transaction failed.
+  - `depositAmount`: The amount to be paid, specified as a `Float`.
+  - `merchantIdentifier`: A string that uniquely identifies the merchant.
+  - `currencyCode`: The currency code in which the payment will be made (e.g., "USD", "EUR").
+  - `countryCode`: The country code associated with the payment (e.g., "US", "GB").
+  - `completionHandler`: A closure that is called when the payment process is completed. The closure takes a `Result<String, ApplePayStatus>` as a parameter, where `String` represents a success message and `ApplePayStatus` represents a failure status.
+- **Returns**: This method does not return a value directly. Instead, the result is handled within the `completionHandler`.
+- **Throws**: This method does not throw errors directly, but errors are handled within the `completionHandler` as `ApplePayStatus`.
 - **Example**:
 
 ```swift
-applePayService.showPaymentSheet(
+self.moneyHashSDK.proceedWithApplePay(
     depositAmount: 99.99,
     merchantIdentifier: "merchant.com.example",
     currencyCode: "USD",
     countryCode: "US"
 ) { result in
     switch result {
-    case .success(let transactionId):
-        print("Payment successful: \(transactionId)")
+    case .success(let message):
+        print("Payment successful: \(message)")
     case .failure(let status):
-        switch status {
-        case .notCompatible:
-            print("Device not compatible with Apple Pay")
-        case .failed:
-            print("Apple Pay transaction failed")
-        }
+        print("Apple Pay failed with status: \(status)")
     }
 }
 ```

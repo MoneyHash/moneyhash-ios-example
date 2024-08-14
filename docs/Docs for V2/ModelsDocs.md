@@ -18,6 +18,7 @@ public enum MHError: Error {
   - `cancelled`: Indicates that an operation was cancelled.
   - `unknownError(underlyingError: String)`: Represents an unknown error, with an underlying error message.
   - `error(error: MoneyHashError)`: Encapsulates a specific `MoneyHashError`.
+---
 
 #### 2. `FieldError`
 
@@ -32,6 +33,7 @@ public struct FieldError {
 - **Properties**:
   - `fieldName`: The name of the field that caused the error.
   - `message`: A message describing the error.
+---
 
 #### 3. `MethodsResult`
 
@@ -46,6 +48,7 @@ public struct MethodsResult: Encodable {
 - **Properties**:
   - `intentData`: Contains details about the intent (`IntentDetails`).
   - `methods`: Contains the available payment methods (`IntentMethods`).
+---
 
 #### 4. `IntentMethods`
 
@@ -66,6 +69,7 @@ public struct IntentMethods: Encodable {
   - `expressMethods`: A list of available express methods (`ExpressMethod`).
   - `savedCards`: A list of saved cards (`SavedCard`).
   - `payoutMethods`: A list of available payout methods (`PayoutMethod`).
+---
 
 #### 5. `IntentDetails`
 
@@ -92,6 +96,7 @@ public struct IntentDetails: Encodable {
   - `transaction`: Details about the transaction (`Transaction`).
   - `id`: The unique identifier for the intent.
   - `nativePayData`: Data for native payments like Apple Pay (`NativePayData`).
+---
 
 #### 6. `Intent`
 
@@ -120,6 +125,7 @@ public struct Intent: Encodable {
   - `fees`: A list of fees applied to the intent (`FeeItem`).
   - `totalDiscount`: The total discount applied to the intent.
   - `subtotalAmount`: The subtotal amount before any discounts or fees.
+---
 
 #### 7. `AmountData`
 
@@ -138,6 +144,7 @@ public struct AmountData: Encodable {
   - `formatted`: The formatted amount value.
   - `currency`: The currency code (e.g., "USD").
   - `maxPayoutAmount`: The maximum payout amount allowed.
+---
 
 #### 8. `IntentStatus`
 
@@ -156,6 +163,7 @@ public enum IntentStatus: String, Encodable {
   - `unprocessed`: The intent is unprocessed.
   - `timeExpired`: The intent has expired due to time.
   - `closed`: The intent has been closed.
+---
 
 #### 9. `IntentType`
 
@@ -170,6 +178,7 @@ public enum IntentType: String, Encodable {
 - **Cases**:
   - `payment`: Represents a payment intent.
   - `payout`: Represents a payout intent.
+---
 
 #### 10. `Transaction`
 
@@ -204,6 +213,7 @@ public struct Transaction: Encodable {
   - `customFormAnswers`: Answers to any custom forms associated with the transaction.
   - `externalActionMessage`: External action messages, if any.
   - `providerTransactionFields`: Fields specific to the transaction provider.
+---
 
 #### 11. `SavedCard`
 
@@ -234,6 +244,7 @@ public struct SavedCard: Encodable {
   - `requireCvv`: Indicates if CVV is required for this card.
   - `cvvConfig`: Configuration related to CVV input (`CvvConfig`).
   - `type`: The type of method (`IntentMethodType`).
+---
 
 #### 12. `PayoutMethod`
 
@@ -254,6 +265,7 @@ public struct PayoutMethod: Encodable {
   - `isSelected`: Indicates if this method is selected.
   - `checkoutIcons`: Icons associated with the payout method.
   - `type`: The type of method (`IntentMethodType`).
+---
 
 #### 13. `PaymentMethod`
 
@@ -276,6 +288,7 @@ public struct PaymentMethod: Encodable {
   - `isSelected`: Indicates if this method is selected.
   - `checkoutIcons`: Icons associated with the payment method.
   - `type`: The type of method (`IntentMethodType`).
+---
 
 #### 14. `IntentMethodType`
 
@@ -296,6 +309,7 @@ public enum IntentMethodType: String, Encodable {
   - `payoutMethod`: Represents a payout method.
   - `savedCard`: Represents a saved card method.
   - `customerBalance`: Represents a customer balance method.
+---
 
 #### 15. `IntentMethodMetaData`
 
@@ -308,6 +322,7 @@ public struct IntentMethodMetaData {
 - **Description**: Contains metadata related to a payment method, such as CVV.
 - **Properties**:
   - `cvv`: The CVV code for a card.
+---
 
 #### 16. `ExpressMethod`
 
@@ -328,6 +343,7 @@ public struct ExpressMethod: Encodable {
   - `isSelected`: Indicates if this method is selected.
   - `checkoutIcons`: Icons associated with the express method.
   - `type`: The type of method (`IntentMethodType`).
+---
 
 #### 17. `CustomerBalance`
 
@@ -348,6 +364,7 @@ public struct CustomerBalance: Encodable {
   - `isSelected`: Indicates if this balance is selected.
   - `icon`: An icon associated with the balance.
   - `type`: The type of method (`IntentMethodType`).
+---
 
 #### 18. `ApplePayData`
 
@@ -368,6 +385,7 @@ public struct ApplePayData: Codable {
   - `currencyCode`: The currency code for the transaction (e.g., "USD").
   - `amount`: The amount to be charged.
   - `supportedNetworks`: A list of supported networks for Apple Pay (e.g., Visa, MasterCard).
+---
 
 #### 19. `InputField`
 
@@ -402,6 +420,7 @@ public struct InputField: Encodable {
   - `minLength`: The minimum length of the input.
   - `readOnly`: Indicates if the input field is read-only.
   - `dependsOn`: Specifies another field that this field depends on.
+---
 
 #### 20. `OptionItem`
 
@@ -416,6 +435,7 @@ public struct OptionItem: Encodable {
 - **Properties**:
   - `label`: The label displayed to the user.
   - `value`: The value associated with the option.
+---
 
 #### 21. `InputFieldType`
 
@@ -438,6 +458,7 @@ public enum InputFieldType: Encodable {
   - `select`: A dropdown or select input field.
   - `number`: A numeric input field.
   - `date`: A date input field.
+---
 
 #### 22. `ErrorMessagesData`
 
@@ -464,6 +485,7 @@ public struct ErrorMessagesData: Encodable {
   - `maxLength`: Error message for inputs longer than the maximum length.
   - `minValue`: Error message for values lower than the minimum allowed.
   - `maxValue`: Error message for values higher than the maximum allowed.
+---
 
 #### 23. `CardEmbed`
 
@@ -482,6 +504,7 @@ public struct CardEmbed: Encodable {
   - `isLive`: Indicates if the card is in live mode.
   - `saveCard`: Indicates if the card should be saved.
   - `saveCardCheckboxMandatory`: Configuration for the save card checkbox (`SaveCardCheckbox`).
+---
 
 #### 24. `SaveCardCheckbox`
 
@@ -496,6 +519,7 @@ public struct SaveCardCheckbox: Codable {
 - **Properties**:
   - `mandatory`: Indicates if the save card option is mandatory.
   - `show`: Indicates if the save card checkbox should be shown.
+---
 
 #### 25. `FeeItem`
 
@@ -515,6 +539,7 @@ public struct FeeItem: Codable {
 - **Properties**:
   - `title`: The title of the fee in different languages (`Language`).
   - `value`: The value of the fee.
+---
 
 #### 26. `Language`
 
@@ -539,6 +564,7 @@ public enum Language: String, Codable {
   - `arabic`: Arabic language.
   - `english`: English language.
   - `french`: French language.
+---
 
 #### 27. `LogLevel`
 
@@ -563,6 +589,7 @@ public enum LogLevel {
   - `warning`: Warning messages.
   - `error`: Error messages.
   - `assert`: Assertion failures.
+---
 
 #### 28. `NativePayData`
 
@@ -575,6 +602,7 @@ public enum NativePayData: Codable {
 - **Description**: Enum representing data for native payment methods like Apple Pay.
 - **Cases**:
   - `applePay(MoneyHash.ApplePayData)`: Data for an Apple Pay transaction.
+---
 
 #### 29. `ProductItem`
 
@@ -601,6 +629,7 @@ public struct ProductItem: Codable {
   - `description`: A description of the product item.
   - `subcategory`: The subcategory of the product item.
   - `referenceId`: A reference ID associated with the product item.
+---
 
 #### 30. `IntentStateDetails`
 
@@ -631,6 +660,7 @@ public enum IntentStateDetails: Encodable {
   - `formFields(cardEmbed: CardEmbed?, billingFields: [InputField]?, shippingFields: [InputField]?)`: Represents the state where form fields are being filled out.
   - `redirectToURL(url: String?, renderStrategy: RenderStrategy?)`: Represents the state where a URL is being redirected.
   - `savedCardCVV(cvvField: InputField, cardTokenData: CardTokenData?)`: Represents the state where a saved card's CVV is being entered.
+---
 
 #### 31. `CardTokenData`
 
@@ -666,6 +696,7 @@ public struct CardTokenData: Codable {
 
 
 
+---
 
 
 #### 32. `cardfieldtype`
@@ -687,6 +718,8 @@ public enum CardFieldType {
   - `cardHolderName`: Represents the cardholder name field.
   - `expireMonth`: Represents the expiration month field.
   - `expireYear`: Represents the expiration year field.
+
+---
 
 #### 33. `CardInputFieldState`
 
@@ -724,6 +757,28 @@ public struct CardInputFieldState {
 
 - **Usage**:
   - This model is typically used in conjunction with `CardFormCollector` to manage the state of each field in a card form, allowing the application to validate input, display error messages, and adjust UI behavior based on the field’s focus status.
+
+  Here’s how you can add the `ApplePayStatus` model documentation to the `ModelsDocs.md` file:
+
+
+---
+
+### 34. ApplePayStatus
+
+```swift
+public enum ApplePayStatus: Error {
+    /// The device is not compatible with Apple Pay.
+    case notCompatible
+    /// The Apple Pay transaction failed.
+    case failed
+}
+```
+
+- **Description**: An enum representing possible statuses for Apple Pay transactions.
+- **Enum Cases**:
+  - `notCompatible`: Indicates that the device is not compatible with Apple Pay.
+  - `failed`: Indicates that the Apple Pay transaction failed.
+
 
 ---
 
