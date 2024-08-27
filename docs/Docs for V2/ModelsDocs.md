@@ -1,26 +1,358 @@
 
-### MoneyHash SDK Models Documentation
+# MoneyHash SDK Models Documentation
 
 The MoneyHash SDK includes a variety of models that represent different aspects of payment intents, methods, transactions, and more. Below is a detailed explanation of each model and its properties.
 
-#### 1. `MHError`
+---
+
+### 1. `MHError`
 
 ```swift
-public enum MHError: Error {
-    case cancelled
-    case unknownError(underlyingError: String)
-    case error(error: MoneyHashError)
+public struct MHError: Error, Codable {
+    /// The category of the error.
+    public let type: ErrorType
+    /// A human-readable message describing the error.
+    public let message: String
+    /// A list of additional error details.
+    public let errors: [ErrorInfo]
 }
 ```
 
 - **Description**: Represents different types of errors that can occur within the MoneyHash SDK.
-- **Cases**:
-  - `cancelled`: Indicates that an operation was cancelled.
-  - `unknownError(underlyingError: String)`: Represents an unknown error, with an underlying error message.
-  - `error(error: MoneyHashError)`: Encapsulates a specific `MoneyHashError`.
+- **Properties**:
+  - `type`: The category of the error (`ErrorType`).
+  - `message`: A human-readable message describing the error.
+  - `errors`: Additional error details represented as an array of `ErrorInfo`.
+
 ---
 
-#### 2. `FieldError`
+### 2. `ErrorType`
+
+```swift
+public enum ErrorType: String, Codable {
+    case cancelled
+    case cardValidation = "card_validation"
+    case network
+    case unknown
+    case notCompatibleWithApplePay
+    case applePayTransactionFailed
+}
+```
+
+- **Description**: Enum representing the different categories of errors.
+- **Cases**:
+  - `cancelled`: Indicates that an operation was cancelled.
+  - `cardValidation`: Represents a card validation error.
+  - `network`: Represents a network error.
+  - `unknown`: Represents an unknown error.
+  - `notCompatibleWithApplePay`: Indicates the device is not compatible with Apple Pay.
+  - `applePayTransactionFailed`: Indicates the Apple Pay transaction failed.
+
+---
+
+### 3. `ErrorInfo`
+
+```swift
+public struct ErrorInfo: Codable {
+    /// The key identifying the specific error detail.
+    public let key: String
+    /// A descriptive message pertaining to the error.
+    public let message: String
+}
+```
+
+- **Description**: Represents additional details related to a specific error.
+- **Properties**:
+  - `key`: Identifies the specific error detail.
+  - `message`: A descriptive message pertaining to the error.
+
+---
+
+### 4. `Language`
+
+```swift
+public enum Language: String, Codable, CodingKey {
+    /// Represents the Arabic language.
+    case arabic = "ar"
+    /// Represents the English language.
+    case english = "en"
+    /// Represents the French language.
+    case french = "fr"
+}
+```
+
+- **Description**: Enum representing different languages supported by the SDK.
+- **Cases**:
+  - `arabic`: Arabic language.
+  - `english`: English language.
+  - `french`: French language.
+
+---
+
+### 5. `FeeItem`
+
+```swift
+public struct FeeItem: Codable {
+    /// A dictionary containing the title of the fee in different languages.
+    public let title: [Language: String]?
+    /// The value of the fee as a string.
+    public let value: String?
+    /// The data for the discount on this fee if it exists.
+    public let discount: DiscountItem?
+}
+```
+
+- **Description**: Represents a fee item associated with an intent.
+- **Properties**:
+  - `title`: The title of the fee in different languages.
+  - `value`: The value of the fee.
+  - `discount`: The discount applied to this fee (`DiscountItem`).
+
+---
+
+### 6. `FeesData`
+
+```swift
+public struct FeesData: Codable {
+    /// The total amount before any fees are applied.
+    public let amount: String?
+    /// An array of `FeeItem` objects detailing the individual fees applied, each containing a title in multiple languages and a value.
+    public let fees: [FeeItem]?
+}
+```
+
+- **Description**: Represents the fee data for an intent.
+- **Properties**:
+  - `amount`: The total amount before any fees are applied.
+  - `fees`: An array of individual fee items applied to the transaction.
+
+---
+
+### 7. `DiscountType`
+
+```swift
+public enum DiscountType: String, Codable {
+    /// A discount type that subtracts a fixed amount from the total.
+    case amount = "amount"
+    /// A discount type that subtracts a percentage of the total.
+    case percentage = "percentage"
+}
+```
+
+- **Description**: Enum representing the type of discount applied.
+- **Cases**:
+  - `amount`: Represents a fixed amount discount.
+  - `percentage`: Represents a percentage discount.
+
+---
+
+### 8. `DiscountItem`
+
+```swift
+public struct DiscountItem: Codable {
+    /// A dictionary mapping `Language` enum values to localized strings, providing the title of the discount in different languages.
+    public let title: [Language: String]?
+    /// The type of the discount, indicating whether it is a fixed amount or a percentage.
+    public let type: DiscountType?
+    /// The numerical value of the discount, which could be an amount or a percentage based on the type.
+    public let value: String?
+}
+```
+
+- **Description**: Represents the details of a discount applied to a fee or transaction.
+- **Properties**:
+  - `title`: The title of the discount in different languages.
+  - `type`: The type of the discount (amount or percentage).
+  - `value`: The value of the discount.
+
+---
+
+### 9. `DiscountData`
+
+```swift
+public struct DiscountData: Codable {
+    /// The total amount that the discount is applied to, before the discount is subtracted.
+    public let amount: String?
+    /// The detailed discount applied, returned by the server after the update. Contains the title in multiple languages, type, and value of the discount.
+    public let discount: DiscountItem?
+}
+```
+
+- **Description**: Represents the discount information related to a transaction.
+- **Properties**:
+  - `amount`: The total amount before the discount is applied.
+  - `discount`: The detailed discount applied to the transaction.
+
+---
+
+### 10. `IntentDetails`
+
+```swift
+public struct IntentDetails: Codable {
+    /// The selected payment or payout method for the intent.
+    public let selectedMethod: String?
+    /// The associated wallet balance.
+    public let wallet: Double?
+    /// The `Intent` object containing the primary details.
+    public let intent: Intent?
+    /// A list of product items included in the intent.
+    public let productItems: [ProductItem]?
+    /// The current state of the intent.
+    public let state: IntentStateDetails?
+    /// The transaction details associated with the intent.
+    public let transaction: Transaction?
+    /// The unique identifier for the intent.
+    public let id: String?
+}
+```
+
+- **Description**: Provides detailed information about an intent.
+- **Properties**:
+  - `selectedMethod`: The selected payment or payout method for the intent.
+  - `wallet`: The wallet balance associated with the intent.
+  - `intent`: The `Intent` object containing core intent details.
+  - `productItems`: A list of product items included in the intent.
+  - `state`: The current state of the intent.
+  - `transaction`: Details about the transaction associated with the intent.
+  - `id`: The unique identifier for the intent.
+
+---
+
+### 11. `TokenizeCardInfo` (Previously `CardEmbed`)
+
+```swift
+public struct TokenizeCardInfo: Codable {
+    /// An access token for card tokenizing.
+    public let accessToken: String?
+    /// Indicates whether the card tokenizing is in live mode or staging.
+    public let isLive: Bool?
+    /// Indicates whether the card should be saved.
+    public let saveCard: Bool?
+    /// Information about the save card checkbox.
+    public let saveCardCheckboxMandatory: SaveCardCheckbox?
+}
+```
+
+- **Description**: Represents the data needed to tokenize and embed a card in the payment process.
+- **Properties**:
+  - `accessToken`: An access token used for card tokenizing.
+  - `isLive`: Indicates whether the card tokenizing is in live mode or staging.
+  - `saveCard`: Indicates whether the card should be saved.
+  - `saveCardCheckboxMandatory`: Configuration for the save card checkbox.
+
+---
+
+### 12. `MHLocale`
+
+```swift
+public enum MHLocale: String, Codable {
+    case arabic = "ar"
+    case english = "en"
+    case french = "fr"
+}
+```
+
+- **Description**: Enum representing different locales supported by the SDK.
+- **Cases**:
+  - `arabic`: Arabic locale.
+  - `english`: English locale.
+  - `french`: French locale.
+
+---
+
+### 13. `CardBrand`
+
+```swift
+public struct CardBrand: Codable {
+    public let first6Digits: String
+    public let brand: String
+    public let brandIconUrl: String
+}
+```
+
+- **Description**: Represents a card brand and its associated details.
+- **Properties**:
+  - `first6Digits`: The first six digits of the card number.
+  - `brand`: The brand name (e.g., Visa, MasterCard).
+  - `brandIconUrl`: The URL to the brand’s icon.
+
+---
+
+### 14. `VaultData`
+
+```swift
+public struct VaultData: Codable {
+    /// The first six digits of the card number.
+    public let firstSixDigits: String?
+    /// The last four digits of the card number.
+    public let lastFourDigits: String?
+    /// The card scheme (e.g., Visa, MasterCard).
+    public let cardScheme: String?
+    /// The name of the cardholder.
+    public let cardHolderName: String?
+    /// The expiry year of the card.
+    public let expiryYear
+
+: String?
+    /// The expiry month of the card.
+    public let expiryMonth: String?
+    /// Indicates whether the card is live.
+    public let isLive: Bool?
+    /// The access token associated with the card.
+    public let accessToken: String?
+    /// The token representing the card.
+    public let cardToken: String?
+    /// The CVV of the card.
+    public let cvv: String?
+    /// Indicates whether the card should be saved.
+    public let saveCard: Bool?
+    /// The fingerprint of the card.
+    public let fingerprint: String?
+}
+```
+
+- **Description**: Represents the vault data related to a stored card.
+- **Properties**:
+  - `firstSixDigits`: The first six digits of the card number.
+  - `lastFourDigits`: The last four digits of the card number.
+  - `cardScheme`: The card scheme (e.g., Visa, MasterCard).
+  - `cardHolderName`: The name of the cardholder.
+  - `expiryYear`: The expiry year of the card.
+  - `expiryMonth`: The expiry month of the card.
+  - `isLive`: Indicates whether the card is live.
+  - `accessToken`: The access token associated with the card.
+  - `cardToken`: The token representing the card.
+  - `cvv`: The CVV of the card.
+  - `saveCard`: Indicates whether the card should be saved.
+  - `fingerprint`: The fingerprint of the card.
+
+---
+
+### 15. `RenderStrategy`
+
+```swift
+public enum RenderStrategy: Codable {
+    /// Redirect strategy.
+    case redirect
+    /// Popup IFrame strategy.
+    case popupIFrame
+    /// IFrame strategy.
+    case iframe
+    /// No render strategy.
+    case none
+}
+```
+
+- **Description**: Enum representing different rendering strategies during the payment process.
+- **Cases**:
+  - `redirect`: Redirect strategy.
+  - `popupIFrame`: Popup IFrame strategy.
+  - `iframe`: IFrame strategy.
+  - `none`: No render strategy.
+
+---
+
+### 16. `FieldError`
 
 ```swift
 public struct FieldError {
@@ -33,9 +365,10 @@ public struct FieldError {
 - **Properties**:
   - `fieldName`: The name of the field that caused the error.
   - `message`: A message describing the error.
+
 ---
 
-#### 3. `MethodsResult`
+### 17. `MethodsResult`
 
 ```swift
 public struct MethodsResult: Encodable {
@@ -48,9 +381,10 @@ public struct MethodsResult: Encodable {
 - **Properties**:
   - `intentData`: Contains details about the intent (`IntentDetails`).
   - `methods`: Contains the available payment methods (`IntentMethods`).
+
 ---
 
-#### 4. `IntentMethods`
+### 18. `IntentMethods`
 
 ```swift
 public struct IntentMethods: Encodable {
@@ -69,36 +403,10 @@ public struct IntentMethods: Encodable {
   - `expressMethods`: A list of available express methods (`ExpressMethod`).
   - `savedCards`: A list of saved cards (`SavedCard`).
   - `payoutMethods`: A list of available payout methods (`PayoutMethod`).
+
 ---
 
-#### 5. `IntentDetails`
-
-```swift
-public struct IntentDetails: Encodable {
-    public let selectedMethod: String?
-    public let wallet: Double?
-    public let intent: Intent?
-    public let productItems: [ProductItem]?
-    public let state: IntentStateDetails?
-    public let transaction: Transaction?
-    public let id: String?
-    public let nativePayData: NativePayData?
-}
-```
-
-- **Description**: Provides detailed information about an intent.
-- **Properties**:
-  - `selectedMethod`: The method selected for the intent.
-  - `wallet`: The wallet balance associated with the intent.
-  - `intent`: The `Intent` object containing core intent details.
-  - `productItems`: A list of items related to the product (`ProductItem`).
-  - `state`: The current state of the intent (`IntentStateDetails`).
-  - `transaction`: Details about the transaction (`Transaction`).
-  - `id`: The unique identifier for the intent.
-  - `nativePayData`: Data for native payments like Apple Pay (`NativePayData`).
----
-
-#### 6. `Intent`
+### 19. `Intent`
 
 ```swift
 public struct Intent: Encodable {
@@ -125,9 +433,10 @@ public struct Intent: Encodable {
   - `fees`: A list of fees applied to the intent (`FeeItem`).
   - `totalDiscount`: The total discount applied to the intent.
   - `subtotalAmount`: The subtotal amount before any discounts or fees.
+
 ---
 
-#### 7. `AmountData`
+### 20. `AmountData`
 
 ```swift
 public struct AmountData: Encodable {
@@ -144,9 +453,10 @@ public struct AmountData: Encodable {
   - `formatted`: The formatted amount value.
   - `currency`: The currency code (e.g., "USD").
   - `maxPayoutAmount`: The maximum payout amount allowed.
+
 ---
 
-#### 8. `IntentStatus`
+### 21. `IntentStatus`
 
 ```swift
 public enum IntentStatus: String, Encodable {
@@ -163,9 +473,10 @@ public enum IntentStatus: String, Encodable {
   - `unprocessed`: The intent is unprocessed.
   - `timeExpired`: The intent has expired due to time.
   - `closed`: The intent has been closed.
+
 ---
 
-#### 9. `IntentType`
+### 22. `IntentType`
 
 ```swift
 public enum IntentType: String, Encodable {
@@ -178,9 +489,10 @@ public enum IntentType: String, Encodable {
 - **Cases**:
   - `payment`: Represents a payment intent.
   - `payout`: Represents a payout intent.
+
 ---
 
-#### 10. `Transaction`
+### 23. `Transaction`
 
 ```swift
 public struct Transaction: Encodable {
@@ -213,9 +525,10 @@ public struct Transaction: Encodable {
   - `customFormAnswers`: Answers to any custom forms associated with the transaction.
   - `externalActionMessage`: External action messages, if any.
   - `providerTransactionFields`: Fields specific to the transaction provider.
+
 ---
 
-#### 11. `SavedCard`
+### 24. `SavedCard`
 
 ```swift
 public struct SavedCard: Encodable {
@@ -244,9 +557,10 @@ public struct SavedCard: Encodable {
   - `requireCvv`: Indicates if CVV is required for this card.
   - `cvvConfig`: Configuration related to CVV input (`CvvConfig`).
   - `type`: The type of method (`IntentMethodType`).
+
 ---
 
-#### 12. `PayoutMethod`
+### 25. `PayoutMethod`
 
 ```swift
 public struct PayoutMethod: Encodable {
@@ -264,14 +578,15 @@ public struct PayoutMethod: Encodable {
   - `title`: The title or name of the payout method.
   - `isSelected`: Indicates if this method is selected.
   - `checkoutIcons`: Icons associated with the payout method.
-  - `type`: The type of method (`IntentMethodType`).
+  - `type`: The type
+
+ of method (`IntentMethodType`).
+
 ---
 
-#### 13. `PaymentMethod`
+### 26. `PaymentMethod`
 
 ```swift
-
-
 public struct PaymentMethod: Encodable {
     public let id: String?
     public let title: String?
@@ -288,9 +603,10 @@ public struct PaymentMethod: Encodable {
   - `isSelected`: Indicates if this method is selected.
   - `checkoutIcons`: Icons associated with the payment method.
   - `type`: The type of method (`IntentMethodType`).
+
 ---
 
-#### 14. `IntentMethodType`
+### 27. `IntentMethodType`
 
 ```swift
 public enum IntentMethodType: String, Encodable {
@@ -309,9 +625,10 @@ public enum IntentMethodType: String, Encodable {
   - `payoutMethod`: Represents a payout method.
   - `savedCard`: Represents a saved card method.
   - `customerBalance`: Represents a customer balance method.
+
 ---
 
-#### 15. `IntentMethodMetaData`
+### 28. `IntentMethodMetaData`
 
 ```swift
 public struct IntentMethodMetaData {
@@ -322,9 +639,10 @@ public struct IntentMethodMetaData {
 - **Description**: Contains metadata related to a payment method, such as CVV.
 - **Properties**:
   - `cvv`: The CVV code for a card.
+
 ---
 
-#### 16. `ExpressMethod`
+### 29. `ExpressMethod`
 
 ```swift
 public struct ExpressMethod: Encodable {
@@ -343,9 +661,10 @@ public struct ExpressMethod: Encodable {
   - `isSelected`: Indicates if this method is selected.
   - `checkoutIcons`: Icons associated with the express method.
   - `type`: The type of method (`IntentMethodType`).
+
 ---
 
-#### 17. `CustomerBalance`
+### 30. `CustomerBalance`
 
 ```swift
 public struct CustomerBalance: Encodable {
@@ -364,9 +683,10 @@ public struct CustomerBalance: Encodable {
   - `isSelected`: Indicates if this balance is selected.
   - `icon`: An icon associated with the balance.
   - `type`: The type of method (`IntentMethodType`).
+
 ---
 
-#### 18. `ApplePayData`
+### 31. `ApplePayData`
 
 ```swift
 public struct ApplePayData: Codable {
@@ -385,9 +705,10 @@ public struct ApplePayData: Codable {
   - `currencyCode`: The currency code for the transaction (e.g., "USD").
   - `amount`: The amount to be charged.
   - `supportedNetworks`: A list of supported networks for Apple Pay (e.g., Visa, MasterCard).
+
 ---
 
-#### 19. `InputField`
+### 32. `InputField`
 
 ```swift
 public struct InputField: Encodable {
@@ -420,9 +741,10 @@ public struct InputField: Encodable {
   - `minLength`: The minimum length of the input.
   - `readOnly`: Indicates if the input field is read-only.
   - `dependsOn`: Specifies another field that this field depends on.
+
 ---
 
-#### 20. `OptionItem`
+### 33. `OptionItem`
 
 ```swift
 public struct OptionItem: Encodable {
@@ -435,9 +757,10 @@ public struct OptionItem: Encodable {
 - **Properties**:
   - `label`: The label displayed to the user.
   - `value`: The value associated with the option.
+
 ---
 
-#### 21. `InputFieldType`
+### 34. `InputFieldType`
 
 ```swift
 public enum InputFieldType: Encodable {
@@ -458,9 +781,10 @@ public enum InputFieldType: Encodable {
   - `select`: A dropdown or select input field.
   - `number`: A numeric input field.
   - `date`: A date input field.
+
 ---
 
-#### 22. `ErrorMessagesData`
+### 35. `ErrorMessagesData`
 
 ```swift
 public struct ErrorMessagesData: Encodable {
@@ -485,184 +809,10 @@ public struct ErrorMessagesData: Encodable {
   - `maxLength`: Error message for inputs longer than the maximum length.
   - `minValue`: Error message for values lower than the minimum allowed.
   - `maxValue`: Error message for values higher than the maximum allowed.
+
 ---
 
-#### 23. `CardEmbed`
-
-```swift
-public struct CardEmbed: Encodable {
-    public let accessToken: String?
-    public let isLive: Bool?
-    public let saveCard: Bool?
-    public let saveCardCheckboxMandatory: SaveCardCheckbox?
-}
-```
-
-- **Description**: Represents the data needed to embed a card in the payment process.
-- **Properties**:
-  - `accessToken`: An access token used for embedding the card.
-  - `isLive`: Indicates if the card is in live mode.
-  - `saveCard`: Indicates if the card should be saved.
-  - `saveCardCheckboxMandatory`: Configuration for the save card checkbox (`SaveCardCheckbox`).
----
-
-#### 24. `SaveCardCheckbox`
-
-```swift
-public struct SaveCardCheckbox: Codable {
-    public let mandatory: Bool?
-    public let show: Bool?
-}
-```
-
-- **Description**: Represents the configuration for the save card checkbox.
-- **Properties**:
-  - `mandatory`: Indicates if the save card option is mandatory.
-  - `show`: Indicates if the save card checkbox should be shown.
----
-
-#### 25. `FeeItem`
-
-```swift
-public struct FeeItem: Codable {
-    public let title: [Language: String]
-    public let value: String
-
-    enum CodingKeys: String, CodingKey {
-        case title
-        case value
-    }
-}
-```
-
-- **Description**: Represents a fee item associated with an intent.
-- **Properties**:
-  - `title`: The title of the fee in different languages (`Language`).
-  - `value`: The value of the fee.
----
-
-#### 26. `Language`
-
-```swift
-public enum Language: String, Codable {
-    case arabic = "ar"
-    case english = "en"
-    case french = "fr"
-
-    var isoCode: String {
-        return self.rawValue
-    }
-
-    static func fromIsoCode(_ isoCode: String) -> Language {
-        return Language(rawValue: isoCode) ?? .english
-    }
-}
-```
-
-- **Description**: Enum representing different languages.
-- **Cases**:
-  - `arabic`: Arabic language.
-  - `english`: English language.
-  - `french`: French language.
----
-
-#### 27. `LogLevel`
-
-```swift
-public enum LogLevel {
-    case verbose
-    case debug
-    case info
-    case warning
-    case error
-    case assert
-
-
-}
-```
-
-- **Description**: Enum representing different levels of logging.
-- **Cases**:
-  - `verbose`: Detailed debug information.
-  - `debug`: General debug information.
-  - `info`: General informational messages.
-  - `warning`: Warning messages.
-  - `error`: Error messages.
-  - `assert`: Assertion failures.
----
-
-#### 28. `NativePayData`
-
-```swift
-public enum NativePayData: Codable {
-    case applePay(MoneyHash.ApplePayData)
-}
-```
-
-- **Description**: Enum representing data for native payment methods like Apple Pay.
-- **Cases**:
-  - `applePay(MoneyHash.ApplePayData)`: Data for an Apple Pay transaction.
----
-
-#### 29. `ProductItem`
-
-```swift
-public struct ProductItem: Codable {
-    let name: String?
-    let type: String?
-    let amount: String?
-    let category: String?
-    let quantity: Int?
-    let description: String?
-    let subcategory: String?
-    let referenceId: String?
-}
-```
-
-- **Description**: Represents an item associated with a product in an intent.
-- **Properties**:
-  - `name`: The name of the product item.
-  - `type`: The type of the product item.
-  - `amount`: The amount associated with the product item.
-  - `category`: The category of the product item.
-  - `quantity`: The quantity of the product item.
-  - `description`: A description of the product item.
-  - `subcategory`: The subcategory of the product item.
-  - `referenceId`: A reference ID associated with the product item.
----
-
-#### 30. `IntentStateDetails`
-
-```swift
-public enum IntentStateDetails: Encodable {
-    case methodSelection(methods: IntentMethods?)
-    case intentForm
-    case intentProcessed
-    case transactionWaitingUserAction
-    case transactionFailed(recommendedMethods: IntentMethods?)
-    case expired
-    case closed
-    case formFields(cardEmbed: CardEmbed?, billingFields: [InputField]?, shippingFields: [InputField]?)
-    case redirectToURL(url: String?, renderStrategy: RenderStrategy?)
-    case savedCardCVV(cvvField: InputField, cardTokenData: CardTokenData?)
-}
-```
-
-- **Description**: Enum representing different states an intent can be in.
-- **Cases**:
-  - `methodSelection(methods: IntentMethods?)`: Represents the method selection state.
-  - `intentForm`: Represents the state where the MoneyHash form is rendered.
-  - `intentProcessed`: Represents the state where the intent has been processed.
-  - `transactionWaitingUserAction`: Represents the state where the transaction is waiting for user action.
-  - `transactionFailed(recommendedMethods: IntentMethods?)`: Represents the state where the transaction has failed, with recommended methods provided.
-  - `expired`: Represents the state where the intent has expired.
-  - `closed`: Represents the state where the intent has been closed.
-  - `formFields(cardEmbed: CardEmbed?, billingFields: [InputField]?, shippingFields: [InputField]?)`: Represents the state where form fields are being filled out.
-  - `redirectToURL(url: String?, renderStrategy: RenderStrategy?)`: Represents the state where a URL is being redirected.
-  - `savedCardCVV(cvvField: InputField, cardTokenData: CardTokenData?)`: Represents the state where a saved card's CVV is being entered.
----
-
-#### 31. `CardTokenData`
+### 36. `CardTokenData`
 
 ```swift
 public struct CardTokenData: Codable {
@@ -694,12 +844,9 @@ public struct CardTokenData: Codable {
   - `paymentMethods`: A list of payment methods associated with the card.
   - `requiresCvv`: Indicates if CVV is required for this card.
 
-
-
 ---
 
-
-#### 32. `cardfieldtype`
+### 37. `CardFieldType`
 
 ```swift
 public enum CardFieldType {
@@ -710,8 +857,8 @@ public enum CardFieldType {
     case expireYear      // Represents the expiration year field.
 }
 ```
-**Description**: An enumeration representing the different types of card fields.
 
+- **Description**: An enumeration representing the different types of card fields.
 - **Enum Cases**:
   - `cardNumber`: Represents the card number field.
   - `cvv`: Represents the CVV field.
@@ -721,9 +868,11 @@ public enum CardFieldType {
 
 ---
 
-#### 33. `CardInputFieldState`
+### 38. `CardInputFieldState`
 
 ```swift
+
+
 public struct CardInputFieldState {
     public let isValid: Bool?
     public let errorMessage: String?
@@ -738,32 +887,16 @@ public struct CardInputFieldState {
     public static let defaultState = CardInputFieldState(isValid: nil, errorMessage: nil, isOnFocused: false)
 }
 ```
+
 - **Description**: Represents the card field state.
 - **Properties**:
-  - `isValid: Bool?`
-    - Indicates whether the input in the field is valid. This is useful for real-time validation and providing feedback to the user.
-  - `errorMessage: String?`
-    - Contains an error message associated with the input field, which can be displayed to the user if the input is invalid.
-  - `isOnFocused: Bool`
-    - Indicates whether the input field is currently focused. This can be used to manage the UI, such as highlighting the focused field.
-
-- **Initializer**:
-  - `init(isValid: Bool? = nil, errorMessage: String? = nil, isOnFocused: Bool = false)`
-    - Initializes a new instance of `CardInputFieldState` with optional parameters for validity, error message, and focus state.
-
-- **Default State**:
-  - `CardInputFieldState.defaultState`
-    - Provides a default state for the card input field where all properties are set to their initial values (`isValid` and `errorMessage` are `nil`, and `isOnFocused` is `false`).
-
-- **Usage**:
-  - This model is typically used in conjunction with `CardFormCollector` to manage the state of each field in a card form, allowing the application to validate input, display error messages, and adjust UI behavior based on the field’s focus status.
-
-  Here’s how you can add the `ApplePayStatus` model documentation to the `ModelsDocs.md` file:
-
+  - `isValid`: Indicates whether the input in the field is valid.
+  - `errorMessage`: Contains an error message associated with the input field.
+  - `isOnFocused`: Indicates whether the input field is currently focused.
 
 ---
 
-### 34. ApplePayStatus
+### 39. `ApplePayStatus`
 
 ```swift
 public enum ApplePayStatus: Error {
@@ -778,7 +911,6 @@ public enum ApplePayStatus: Error {
 - **Enum Cases**:
   - `notCompatible`: Indicates that the device is not compatible with Apple Pay.
   - `failed`: Indicates that the Apple Pay transaction failed.
-
 
 ---
 
