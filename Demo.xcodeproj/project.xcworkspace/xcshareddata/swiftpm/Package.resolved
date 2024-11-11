@@ -1,12 +1,13 @@
 {
+  "originHash" : "6096dbbda745772f40f34110cc8e57c510d240b998bf2adfa203781d0e423cfd",
   "pins" : [
     {
       "identity" : "moneyhash-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MoneyHash/moneyhash-ios",
       "state" : {
-        "revision" : "03815bb78388f74be0b128c07bec6046a6f52a65",
-        "version" : "1.0.4"
+        "revision" : "fe4c1f3733cd59d25797d46b52f44b2bff636578",
+        "version" : "2.0.1"
       }
     },
     {
@@ -14,10 +15,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MoneyHash/moneyhash-spm",
       "state" : {
-        "revision" : "dd3955c004ce6728bac58529b6a6770b3507310e",
-        "version" : "1.0.3"
+        "revision" : "cec14fb146ff02ac83ecbce583df6e153e0ae9e6",
+        "version" : "2.0.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

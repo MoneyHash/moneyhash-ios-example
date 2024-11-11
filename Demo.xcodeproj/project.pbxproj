@@ -9,11 +9,18 @@
 /* Begin PBXBuildFile section */
 		C123490A2C0CA4D200B610ED /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C12349092C0CA4D200B610ED /* MoneyHashiOS */; };
 		C12349112C0CA97F00B610ED /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C12349102C0CA97F00B610ED /* MoneyHashiOS */; };
-		C12349142C0CAF8E00B610ED /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C12349132C0CAF8E00B610ED /* MoneyHashiOS */; };
+		C14A9F462CE0E25600D5FA91 /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C14A9F452CE0E25600D5FA91 /* MoneyHashiOS */; };
+		C14A9F492CE0E2B400D5FA91 /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C14A9F482CE0E2B400D5FA91 /* MoneyHashiOS */; };
+		C14A9F4C2CE0E34D00D5FA91 /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C14A9F4B2CE0E34D00D5FA91 /* MoneyHashiOS */; };
+		C14A9F4F2CE0E48000D5FA91 /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C14A9F4E2CE0E48000D5FA91 /* MoneyHashiOS */; };
+		C1ED43B92CE111DB0019040F /* CardFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ED43B82CE111DB0019040F /* CardFormView.swift */; };
+		C1ED43BB2CE111FA0019040F /* CardFormVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ED43BA2CE111FA0019040F /* CardFormVM.swift */; };
+		C1ED43C22CE113E00019040F /* CardFormStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ED43C12CE113E00019040F /* CardFormStyle.swift */; };
+		C1ED43C62CE114770019040F /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ED43C52CE114770019040F /* SVGImageView.swift */; };
+		C1EF62882CE2535200FA9FAB /* MoneyHashiOS in Frameworks */ = {isa = PBXBuildFile; productRef = C1EF62872CE2535200FA9FAB /* MoneyHashiOS */; };
 		DDE640C527B50B3B00604FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE640C427B50B3B00604FD4 /* AppDelegate.swift */; };
 		DDE640C727B50B3B00604FD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE640C627B50B3B00604FD4 /* SceneDelegate.swift */; };
 		DDE640C927B50B3B00604FD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE640C827B50B3B00604FD4 /* ViewController.swift */; };
-		DDE640CC27B50B3B00604FD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDE640CA27B50B3B00604FD4 /* Main.storyboard */; };
 		DDE640CE27B50B3E00604FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDE640CD27B50B3E00604FD4 /* Assets.xcassets */; };
 		DDE640D127B50B3E00604FD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDE640CF27B50B3E00604FD4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -32,12 +39,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C1ED43B82CE111DB0019040F /* CardFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFormView.swift; sourceTree = "<group>"; };
+		C1ED43BA2CE111FA0019040F /* CardFormVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFormVM.swift; sourceTree = "<group>"; };
+		C1ED43C12CE113E00019040F /* CardFormStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFormStyle.swift; sourceTree = "<group>"; };
+		C1ED43C52CE114770019040F /* SVGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImageView.swift; sourceTree = "<group>"; };
 		DD25FA9E2A2CBC3E000BB787 /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
 		DDE640C127B50B3B00604FD4 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE640C427B50B3B00604FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDE640C627B50B3B00604FD4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DDE640C827B50B3B00604FD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DDE640CB27B50B3B00604FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDE640CD27B50B3E00604FD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDE640D027B50B3E00604FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDE640D227B50B3E00604FD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,15 +58,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1EF62882CE2535200FA9FAB /* MoneyHashiOS in Frameworks */,
 				C123490A2C0CA4D200B610ED /* MoneyHashiOS in Frameworks */,
-				C12349142C0CAF8E00B610ED /* MoneyHashiOS in Frameworks */,
+				C14A9F4F2CE0E48000D5FA91 /* MoneyHashiOS in Frameworks */,
+				C14A9F462CE0E25600D5FA91 /* MoneyHashiOS in Frameworks */,
+				C14A9F4C2CE0E34D00D5FA91 /* MoneyHashiOS in Frameworks */,
 				C12349112C0CA97F00B610ED /* MoneyHashiOS in Frameworks */,
+				C14A9F492CE0E2B400D5FA91 /* MoneyHashiOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1ED43B72CE111BF0019040F /* CardForm */ = {
+			isa = PBXGroup;
+			children = (
+				C1ED43B82CE111DB0019040F /* CardFormView.swift */,
+				C1ED43BA2CE111FA0019040F /* CardFormVM.swift */,
+				C1ED43C12CE113E00019040F /* CardFormStyle.swift */,
+				C1ED43C52CE114770019040F /* SVGImageView.swift */,
+			);
+			path = CardForm;
+			sourceTree = "<group>";
+		};
 		DDE640B827B50B3B00604FD4 = {
 			isa = PBXGroup;
 			children = (
@@ -76,11 +101,11 @@
 		DDE640C327B50B3B00604FD4 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				C1ED43B72CE111BF0019040F /* CardForm */,
 				DD25FA9E2A2CBC3E000BB787 /* Demo.entitlements */,
 				DDE640C427B50B3B00604FD4 /* AppDelegate.swift */,
 				DDE640C627B50B3B00604FD4 /* SceneDelegate.swift */,
 				DDE640C827B50B3B00604FD4 /* ViewController.swift */,
-				DDE640CA27B50B3B00604FD4 /* Main.storyboard */,
 				DDE640CD27B50B3E00604FD4 /* Assets.xcassets */,
 				DDE640CF27B50B3E00604FD4 /* LaunchScreen.storyboard */,
 				DDE640D227B50B3E00604FD4 /* Info.plist */,
@@ -108,7 +133,11 @@
 			packageProductDependencies = (
 				C12349092C0CA4D200B610ED /* MoneyHashiOS */,
 				C12349102C0CA97F00B610ED /* MoneyHashiOS */,
-				C12349132C0CAF8E00B610ED /* MoneyHashiOS */,
+				C14A9F452CE0E25600D5FA91 /* MoneyHashiOS */,
+				C14A9F482CE0E2B400D5FA91 /* MoneyHashiOS */,
+				C14A9F4B2CE0E34D00D5FA91 /* MoneyHashiOS */,
+				C14A9F4E2CE0E48000D5FA91 /* MoneyHashiOS */,
+				C1EF62872CE2535200FA9FAB /* MoneyHashiOS */,
 			);
 			productName = Demo;
 			productReference = DDE640C127B50B3B00604FD4 /* Demo.app */;
@@ -139,7 +168,7 @@
 			);
 			mainGroup = DDE640B827B50B3B00604FD4;
 			packageReferences = (
-				C12349122C0CAF8E00B610ED /* XCRemoteSwiftPackageReference "moneyhash-ios" */,
+				C1EF62862CE2535200FA9FAB /* XCRemoteSwiftPackageReference "moneyhash-ios" */,
 			);
 			productRefGroup = DDE640C227B50B3B00604FD4 /* Products */;
 			projectDirPath = "";
@@ -157,7 +186,6 @@
 			files = (
 				DDE640D127B50B3E00604FD4 /* LaunchScreen.storyboard in Resources */,
 				DDE640CE27B50B3E00604FD4 /* Assets.xcassets in Resources */,
-				DDE640CC27B50B3B00604FD4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +198,10 @@
 			files = (
 				DDE640C927B50B3B00604FD4 /* ViewController.swift in Sources */,
 				DDE640C527B50B3B00604FD4 /* AppDelegate.swift in Sources */,
+				C1ED43B92CE111DB0019040F /* CardFormView.swift in Sources */,
+				C1ED43C22CE113E00019040F /* CardFormStyle.swift in Sources */,
+				C1ED43C62CE114770019040F /* SVGImageView.swift in Sources */,
+				C1ED43BB2CE111FA0019040F /* CardFormVM.swift in Sources */,
 				DDE640C727B50B3B00604FD4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,14 +209,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DDE640CA27B50B3B00604FD4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DDE640CB27B50B3B00604FD4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DDE640CF27B50B3E00604FD4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -319,13 +343,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = A96FHTQ6XR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -333,7 +357,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zeiny.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeiny.Demo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -348,13 +372,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = A96FHTQ6XR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -362,7 +386,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zeiny.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeiny.Demo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -394,12 +418,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C12349122C0CAF8E00B610ED /* XCRemoteSwiftPackageReference "moneyhash-ios" */ = {
+		C1EF62862CE2535200FA9FAB /* XCRemoteSwiftPackageReference "moneyhash-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MoneyHash/moneyhash-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.6;
+				minimumVersion = 2.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -413,9 +437,25 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = MoneyHashiOS;
 		};
-		C12349132C0CAF8E00B610ED /* MoneyHashiOS */ = {
+		C14A9F452CE0E25600D5FA91 /* MoneyHashiOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C12349122C0CAF8E00B610ED /* XCRemoteSwiftPackageReference "moneyhash-ios" */;
+			productName = MoneyHashiOS;
+		};
+		C14A9F482CE0E2B400D5FA91 /* MoneyHashiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MoneyHashiOS;
+		};
+		C14A9F4B2CE0E34D00D5FA91 /* MoneyHashiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MoneyHashiOS;
+		};
+		C14A9F4E2CE0E48000D5FA91 /* MoneyHashiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MoneyHashiOS;
+		};
+		C1EF62872CE2535200FA9FAB /* MoneyHashiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1EF62862CE2535200FA9FAB /* XCRemoteSwiftPackageReference "moneyhash-ios" */;
 			productName = MoneyHashiOS;
 		};
 /* End XCSwiftPackageProductDependency section */

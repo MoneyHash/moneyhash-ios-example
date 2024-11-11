@@ -24,6 +24,23 @@ Then, select **Add Package**.
 <img src="docs/swiftpm_step2.png">
 
 ---
+### **Important Update: Version 2 Released!**
+
+We are excited to announce the release of **MoneyHash SDK v2**! This new version includes significant enhancements and new features designed to improve the integration experience and provide more flexibility and control over payment processes.
+
+#### What’s New in v2:
+- **Enhanced Intent States Handling**: More detailed and versatile handling of payment states, with added capabilities for card tokenization and form management.
+- **Improved Card Handling**: Secure handling of card data with new components for tokenization and validation.
+- **Expanded API Functions**: Additional API methods to give you more control over payment flows and method selections.
+- **Updated Models**: Refined models with more comprehensive data structures, providing more context and control.
+
+For detailed instructions on migrating from `v1` to `v2`, please refer to the [Migration Guide to V2](./docs/Docs%20for%20V2/MIGRATION_TO_V2.md).
+
+To explore the full documentation of MoneyHash SDK v2, including new features and examples, please visit the [v2 Documentation](./docs/Docs%20for%20V2/MoneyHashV2.md).
+
+---
+
+
 
 ## How to use?
 
